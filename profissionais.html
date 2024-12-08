@@ -1,0 +1,180 @@
+<!-- PROFISSIONAIS (profissionais.html) -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SpellChat - Profissionais</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Poppins:400,600" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    body {
+      background: #F2F0F7;
+      font-family: 'Open Sans', sans-serif;
+    }
+    header .navbar {
+      background-color: #BFA2DB;
+      padding: 0.8rem 2rem;
+    }
+    header .navbar-brand {
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+    }
+    header .navbar-nav .nav-link {
+      color: #fff !important;
+      margin: 0 0.8rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    .content {
+      max-width: 1000px;
+      margin: 2rem auto;
+      background: #fff;
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .content h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+    .team-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+    .team-member {
+      background: #F7F7FF;
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+    }
+    .team-member img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 0.8rem;
+    }
+    .team-member h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+    .team-member p {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+    .team-member a {
+      color: #BFA2DB;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .team-member a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      background: #BFA2DB;
+      color: #fff;
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg">
+      <a class="navbar-brand" href="index.html">
+        <img src="https://via.placeholder.com/30" alt="Logo">SpellChat
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border:none;">
+        <span class="text-white">Menu</span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="projetos.html">Projetos</a></li>
+          <li class="nav-item"><a class="nav-link" href="profissionais.html">Profissionais</a></li>
+          <li class="nav-item"><a class="nav-link" href="contato.html">Contato</a></li>
+        </ul>
+        <div class="user-profile">
+          <img src="https://via.placeholder.com/32" alt="User">
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="content">
+      <h2>Nossa Equipe</h2>
+      <div class="team-list">
+        <div class="team-member">
+          <img src="https://via.placeholder.com/80" alt="Membro">
+          <h3>Ana Souza</h3>
+          <p>Especialista em Didática e Linguística</p>
+          <a href="#">Ver Perfil</a>
+        </div>
+        <div class="team-member">
+          <img src="https://via.placeholder.com/80" alt="Membro">
+          <h3>Lucas Almeida</h3>
+          <p>Desenvolvedor Front-End</p>
+          <a href="#">Ver Perfil</a>
+        </div>
+        <div class="team-member">
+          <img src="https://via.placeholder.com/80" alt="Membro">
+          <h3>Mariana Ribeiro</h3>
+          <p>Designer UI/UX</p>
+          <a href="#">Ver Perfil</a>
+        </div>
+        <div class="team-member">
+          <img src="https://via.placeholder.com/80" alt="Membro">
+          <h3>Felipe Santos</h3>
+          <p>Especialista em IA e NLP</p>
+          <a href="#">Ver Perfil</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>Links úteis</h4>
+        <ul class="footer-links">
+          <li><a href="sobrenos.html">Sobre nós</a></li>
+          <li><a href="politica.html">Política de privacidade</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Contato</h4>
+        <p>
+          Endereço: Rua Exemplo, 123, Bairro, Cidade, CEP 00000-000<br>
+          Telefone: (xx) xxxx-xxxx<br>
+          E-mail: contato@spellchat.com
+        </p>
+      </div>
+      <div class="footer-section">
+        <h4>Redes Sociais</h4>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook"></i>Facebook</a>
+          <a href="#"><i class="fab fa-instagram"></i>Instagram</a>
+          <a href="#"><i class="fab fa-linkedin"></i>LinkedIn</a>
+        </div>
+      </div>
+    </div>
+    <div class="text-center" style="border-top:1px solid rgba(255,255,255,0.2); padding-top:1rem; font-size:0.85rem; color:#ddd;">
+      &copy; 2023 SpellChat. Todos os direitos reservados.
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
