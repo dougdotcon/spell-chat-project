@@ -7,17 +7,215 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,700|Open+Sans:400,400i,700" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: #f7f7f7;
+      margin: 0;
+      padding: 0;
+    }
+    
+    header .navbar {
+      background-color: #4b0082;
+      padding: 1rem 2rem;
+    }
+
+    header .navbar .logo {
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1.5rem;
+    }
+
+    header .nav-links li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      margin-left: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    header .nav-links li a:hover {
+      color: #ddd;
+    }
+
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 2rem;
+    }
+
+    #app {
+      width: 100%;
+      max-width: 600px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #app h1 {
+      background: #4b0082;
+      color: #fff;
+      font-size: 1.4rem;
+      padding: 1rem;
+      margin: 0;
+      text-align: center;
+    }
+
+    #chat {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+    }
+
+    .message {
+      margin-bottom: 1rem;
+      padding: 0.8rem 1rem;
+      border-radius: 6px;
+      max-width: 80%;
+      word-wrap: break-word;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    .message.user {
+      background: #4b0082;
+      color: #fff;
+      margin-left: auto;
+      text-align: right;
+    }
+
+    .message.gpt3 {
+      background: #eee;
+      color: #333;
+      margin-right: auto;
+    }
+
+    #input-container {
+      display: flex;
+      border-top: 1px solid #ddd;
+      padding: 0.5rem;
+      background: #fff;
+    }
+
+    #user-input {
+      flex: 1;
+      border: none;
+      padding: 0.8rem;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    #send-button {
+      background: #4b0082;
+      border: none;
+      color: #fff;
+      padding: 0 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      font-size: 1rem;
+    }
+
+    #send-button:hover {
+      background: #3a0066;
+    }
+
+    footer {
+      background: #4b0082;
+      color: #fff;
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .footer-section {
+      flex: 1 1 200px;
+      margin: 0.5rem;
+    }
+
+    .footer-section h4 {
+      margin-bottom: 1rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-links li a {
+      color: #ddd;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .footer-links li a:hover {
+      color: #fff;
+    }
+
+    .social-icons a {
+      color: #ddd;
+      margin-right: 1rem;
+      font-size: 0.95rem;
+      text-decoration: none;
+    }
+
+    .social-icons a:hover {
+      color: #fff;
+    }
+
+    .footer-section p {
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    .footer-copyright {
+      text-align: center;
+      margin-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      padding-top: 1rem;
+      font-size: 0.85rem;
+      color: #ddd;
+    }
+
+    @media (max-width: 768px) {
+      .footer-container {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
-    <nav class="navbar">
+    <nav class="navbar navbar-expand-lg">
       <a href="index.html" class="logo">SpellChat</a>
-      <ul class="nav-links">
-        <li><a href="index.html">Início</a></li>
-        <li><a href="projetos.html">Projetos</a></li>
-        <li><a href="profissionais.html">Profissionais</a></li>
-        <li><a href="contato.html">Contato</a></li>
-      </ul>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="border:none;">
+        <span class="text-white">Menu</span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="nav-links navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="projetos.html">Projetos</a></li>
+          <li class="nav-item"><a class="nav-link" href="profissionais.html">Profissionais</a></li>
+          <li class="nav-item"><a class="nav-link" href="contato.html">Contato</a></li>
+        </ul>
+      </div>
     </nav>
   </header>
 
@@ -39,7 +237,6 @@
         <ul class="footer-links">
           <li><a href="sobrenos.html">Sobre nós</a></li>
           <li><a href="politica.html">Política de privacidade</a></li>
-          <!-- Adicione mais links conforme necessário -->
         </ul>
       </div>
       <div class="footer-section">
@@ -57,7 +254,6 @@
           <a href="https://www.instagram.com/conectapro" target="_blank">Instagram</a>
           <a href="https://www.linkedin.com/company/conectapro" target="_blank">LinkedIn</a>
         </div>
-        <!-- Adicione mais ícones conforme necessário -->
       </div>
     </div>
     <div class="footer-copyright">
@@ -92,18 +288,18 @@
     }
 
     async function fetchGPT3Response(prompt) {
+      // Substitua sua chave da API abaixo por uma variável de ambiente ou método seguro.
+      const apiKey = 'SUA_CHAVE_DA_API_AQUI'; 
       const response = await fetch('https://api.openai.com/v1/engines/davinci-codex/completions', {
         method: 'POST',
         headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer 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',
-      'OpenAI-Organization': 'org-pddzHbJaysfwO4Vq3jqGofeA'
-    },
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + apiKey
+        },
         body: JSON.stringify({
           prompt: `Eu sou um assistente de aprendizado de idiomas e estou ajudando um usuário a aprender inglês.\nUsuário: Olá\nAssistente: Olá! Como posso ajudá-lo a aprender inglês hoje?\nUsuário: "${prompt}"\nAssistente:`,
           max_tokens: 50,
           n: 1,
-          stop: null,
           temperature: 0.8
         })
       });
@@ -112,13 +308,10 @@
         const jsonResponse = await response.json();
         return jsonResponse.choices[0].text.trim();
       } else {
-        console.error('Erro ao buscar resposta do GPT-3:', response);
-        return 'Desculpe, ocorreu um erro. Por favor, tente novamente mais tarde.';
+        return 'Ocorreu um erro ao buscar a resposta. Tente novamente mais tarde.';
       }
     }
 
-
-    // Função para converter texto em áudio usando a Web Speech API
     function speak(text) {
       const synth = window.speechSynthesis;
       const utterance = new SpeechSynthesisUtterance(text);
