@@ -1,43 +1,76 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SpellChat</title>
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700|Open+Sans:400,400i,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Poppins:400,600" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-KP1HgToEh8CxcE99ZPf8HJ9wn3cZXRInKITJdgB1q6XFxQtY6AMh3P+OyJlk5+/iqa9dFy63rpUWhjArR/NZ9w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <style>
+    :root {
+      --color-bg: #F2F0F7;
+      --color-primary: #BFA2DB;
+      --color-secondary: #CABBE9;
+      --color-accent: #C4F1BE;
+      --color-text: #333;
+      --color-white: #fff;
+    }
     body {
       font-family: 'Open Sans', sans-serif;
-      background: #f9f9f9;
+      background: var(--color-bg);
       margin: 0;
       padding: 0;
+      color: var(--color-text);
     }
 
     header .navbar {
-      background-color: #4b0082;
-      padding: 1rem 2rem;
+      background-color: var(--color-primary);
+      padding: 0.8rem 2rem;
+      display: flex;
+      align-items: center;
     }
 
-    header .navbar .logo {
-      color: #fff;
-      font-weight: bold;
+    header .navbar-brand {
+      color: var(--color-white);
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
       text-decoration: none;
-      font-size: 1.5rem;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
     }
 
-    header .nav-links .nav-link {
-      color: #fff !important;
+    header .navbar-brand img {
+      width: 30px;
+      height: 30px;
+      margin-right: 0.5rem;
+      border-radius: 50%;
+    }
+
+    header .navbar-nav .nav-link {
+      color: var(--color-white) !important;
+      margin: 0 0.8rem;
+      font-size: 0.95rem;
       font-weight: 500;
-      margin-left: 1rem;
-      transition: color 0.3s ease;
     }
 
-    header .nav-links .nav-link:hover {
-      color: #ddd !important;
+    header .navbar-nav .nav-link:hover {
+      text-decoration: underline;
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+    }
+
+    .user-profile img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      margin-left: 1rem;
+      cursor: pointer;
     }
 
     main {
@@ -45,12 +78,94 @@
       justify-content: center;
       align-items: flex-start;
       padding: 2rem;
+      gap: 1.5rem;
     }
 
+    /* Sidebar */
+    .sidebar {
+      background: var(--color-white);
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 1rem;
+      width: 250px;
+      flex-shrink: 0;
+    }
+
+    .sidebar h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .sidebar .profile-card {
+      background: var(--color-secondary);
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .sidebar .profile-card img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-bottom: 0.5rem;
+    }
+
+    .sidebar .profile-card h3 {
+      font-size: 1rem;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .sidebar .profile-card p {
+      font-size: 0.9rem;
+      margin: 0.3rem 0;
+    }
+
+    .sidebar .section {
+      margin-bottom: 1rem;
+    }
+
+    .sidebar .section h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .sidebar .section ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    .sidebar .section ul li {
+      margin-bottom: 0.3rem;
+    }
+
+    .sidebar .theme-switch {
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .sidebar .theme-switch button {
+      background: var(--color-primary);
+      color: var(--color-white);
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    /* Chat Container */
     #app {
       width: 100%;
       max-width: 600px;
-      background: #fff;
+      background: var(--color-white);
       border-radius: 8px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       overflow: hidden;
@@ -59,19 +174,20 @@
     }
 
     #app h1 {
-      background: #4b0082;
-      color: #fff;
-      font-size: 1.4rem;
+      background: var(--color-primary);
+      color: var(--color-white);
+      font-size: 1.2rem;
       padding: 1rem;
       margin: 0;
       text-align: center;
+      font-family: 'Poppins', sans-serif;
     }
 
     #chat {
       flex: 1;
       padding: 1rem;
       overflow-y: auto;
-      background: #fafafa;
+      background: #f7f7f7;
     }
 
     .message {
@@ -86,8 +202,8 @@
     }
 
     .message.user {
-      background: #4b0082;
-      color: #fff;
+      background: var(--color-secondary);
+      color: #333;
       margin-left: auto;
       text-align: right;
     }
@@ -98,11 +214,11 @@
       right: -6px;
       top: 10px;
       border: 6px solid transparent;
-      border-left-color: #4b0082;
+      border-left-color: var(--color-secondary);
     }
 
     .message.gpt3 {
-      background: #eee;
+      background: var(--color-accent);
       color: #333;
       margin-right: auto;
     }
@@ -113,7 +229,7 @@
       left: -6px;
       top: 10px;
       border: 6px solid transparent;
-      border-right-color: #eee;
+      border-right-color: var(--color-accent);
     }
 
     #input-container {
@@ -121,7 +237,7 @@
       align-items: center;
       border-top: 1px solid #ddd;
       padding: 0.5rem;
-      background: #fff;
+      background: var(--color-white);
     }
 
     #user-input {
@@ -132,30 +248,29 @@
       outline: none;
     }
 
-    #send-button, #voice-button {
-      background: #4b0082;
+    #voice-button, #send-button {
+      background: var(--color-primary);
       border: none;
-      color: #fff;
-      padding: 0.6rem 1rem;
+      color: var(--color-white);
+      padding: 0.6rem 0.8rem;
       cursor: pointer;
       transition: background 0.3s ease;
       font-size: 1rem;
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-
-    #voice-button {
-      margin-right: 0.5rem;
+      margin-left: 0.3rem;
+      border-radius: 6px;
     }
 
     #voice-button:hover, #send-button:hover {
-      background: #3a0066;
+      background: #a188c9;
     }
 
+    /* Footer */
     footer {
-      background: #4b0082;
-      color: #fff;
+      background: var(--color-primary);
+      color: var(--color-white);
       padding: 2rem;
       margin-top: 2rem;
     }
@@ -176,6 +291,7 @@
       margin-bottom: 1rem;
       font-weight: 700;
       font-size: 1.1rem;
+      font-family: 'Poppins', sans-serif;
     }
 
     .footer-links {
@@ -213,71 +329,17 @@
       line-height: 1.4;
     }
 
-    .footer-section p:not(:last-child) {
-      margin-bottom: 0.5rem;
-    }
-
-    .footer-section .social-icons {
-      display: flex;
-      align-items: center;
-      margin-top: 0.5rem;
-    }
-
-    .footer-section .social-icons a {
-      display: inline-block;
-    }
-
-    .footer-section .social-icons a i {
-      margin-right: 0.3rem;
-    }
-
-    .footer-section .social-icons a:hover {
-      text-decoration: underline;
-    }
-
-    .footer-section h4 {
-      margin-bottom: 1.2rem;
-    }
-
-    .footer-container > .footer-section:not(:last-child) {
-      margin-right: 2rem;
-    }
-
-    .footer-container {
-      gap: 2rem;
-    }
-
-    .footer-container > .footer-section h4 {
-      font-size: 1.1rem;
-    }
-
-    .footer-container > .footer-section p,
-    .footer-container > .footer-section a {
-      font-size: 0.95rem;
-    }
-
-    .footer-container > .footer-section a {
-      line-height: 1.6;
-    }
-
-    .footer-container > .footer-section ul {
-      padding: 0;
-    }
-
-    .footer-container > .footer-section ul li {
-      margin-bottom: 0.5rem;
-    }
-
     @media (max-width: 768px) {
-      .footer-container {
+      main {
         flex-direction: column;
-        gap: 1rem;
+        align-items: center;
       }
       #app {
-        width: 90%;
+        width: 100%;
       }
-      #app h1 {
-        font-size: 1.2rem;
+      .sidebar {
+        width: 100%;
+        margin-bottom: 1rem;
       }
     }
   </style>
@@ -285,22 +347,60 @@
 <body>
   <header>
     <nav class="navbar navbar-expand-lg">
-      <a href="index.html" class="logo">SpellChat</a>
+      <a class="navbar-brand" href="index.html">
+        <img src="https://via.placeholder.com/30" alt="Logo">
+        SpellChat
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border:none;">
         <span class="text-white">Menu</span>
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="nav-links navbar-nav">
+        <ul class="navbar-nav">
           <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
           <li class="nav-item"><a class="nav-link" href="projetos.html">Projetos</a></li>
           <li class="nav-item"><a class="nav-link" href="profissionais.html">Profissionais</a></li>
           <li class="nav-item"><a class="nav-link" href="contato.html">Contato</a></li>
         </ul>
+        <div class="user-profile">
+          <img src="https://via.placeholder.com/32" alt="User">
+        </div>
       </div>
     </nav>
   </header>
 
   <main>
+    <div class="sidebar">
+      <div class="profile-card">
+        <img src="https://via.placeholder.com/60" alt="User">
+        <h3>João Silva</h3>
+        <p>Nível: Intermediário</p>
+        <p>Alvo: Expandir vocabulário</p>
+      </div>
+
+      <div class="section">
+        <h4>Dicas de Estudo</h4>
+        <ul>
+          <li>Pratique 10 novas palavras por dia</li>
+          <li>Escute podcasts em inglês</li>
+          <li>Leia artigos curtos e tente resumir</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h4>Frases Comuns</h4>
+        <ul>
+          <li>"How are you doing?"</li>
+          <li>"Nice to meet you."</li>
+          <li>"Could you repeat, please?"</li>
+        </ul>
+      </div>
+
+      <div class="theme-switch">
+        <span>Modo Claro/Escuro</span>
+        <button>Mudar Tema</button>
+      </div>
+    </div>
+
     <div id="app">
       <h1>SpellChat</h1>
       <div id="chat"></div>
@@ -322,19 +422,19 @@
         </ul>
       </div>
       <div class="footer-section">
-        <h4>Entre em contato</h4>
+        <h4>Contato</h4>
         <p>
-          Endereço: Rua Exemplo, 123, Bairro, Cidade, Estado, CEP<br>
+          Endereço: Rua Exemplo, 123, Bairro, Cidade, CEP 00000-000<br>
           Telefone: (xx) xxxx-xxxx<br>
-          E-mail: contato@conectapro.com
+          E-mail: contato@spellchat.com
         </p>
       </div>
       <div class="footer-section">
-        <h4>Mídias sociais</h4>
+        <h4>Redes Sociais</h4>
         <div class="social-icons">
-          <a href="https://www.facebook.com/conectapro" target="_blank"><i class="fab fa-facebook"></i>Facebook</a>
-          <a href="https://www.instagram.com/conectapro" target="_blank"><i class="fab fa-instagram"></i>Instagram</a>
-          <a href="https://www.linkedin.com/company/conectapro" target="_blank"><i class="fab fa-linkedin"></i>LinkedIn</a>
+          <a href="#"><i class="fab fa-facebook"></i>Facebook</a>
+          <a href="#"><i class="fab fa-instagram"></i>Instagram</a>
+          <a href="#"><i class="fab fa-linkedin"></i>LinkedIn</a>
         </div>
       </div>
     </div>
@@ -361,7 +461,7 @@
 
       recognition.onstart = () => {
         recognizing = true;
-        voiceButton.style.background = '#3a0066';
+        voiceButton.style.background = '#a188c9';
       };
 
       recognition.onresult = (event) => {
@@ -371,7 +471,7 @@
 
       recognition.onend = () => {
         recognizing = false;
-        voiceButton.style.background = '#4b0082';
+        voiceButton.style.background = 'var(--color-primary)';
       };
     }
 
