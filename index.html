@@ -7,15 +7,16 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,700|Open+Sans:400,400i,700" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-KP1HgToEh8CxcE99ZPf8HJ9wn3cZXRInKITJdgB1q6XFxQtY6AMh3P+OyJlk5+/iqa9dFy63rpUWhjArR/NZ9w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <style>
     body {
       font-family: 'Open Sans', sans-serif;
-      background: #f7f7f7;
+      background: #f9f9f9;
       margin: 0;
       padding: 0;
     }
-    
+
     header .navbar {
       background-color: #4b0082;
       padding: 1rem 2rem;
@@ -28,16 +29,15 @@
       font-size: 1.5rem;
     }
 
-    header .nav-links li a {
-      color: #fff;
-      text-decoration: none;
+    header .nav-links .nav-link {
+      color: #fff !important;
       font-weight: 500;
       margin-left: 1rem;
       transition: color 0.3s ease;
     }
 
-    header .nav-links li a:hover {
-      color: #ddd;
+    header .nav-links .nav-link:hover {
+      color: #ddd !important;
     }
 
     main {
@@ -71,6 +71,7 @@
       flex: 1;
       padding: 1rem;
       overflow-y: auto;
+      background: #fafafa;
     }
 
     .message {
@@ -81,6 +82,7 @@
       word-wrap: break-word;
       font-size: 0.95rem;
       line-height: 1.4;
+      position: relative;
     }
 
     .message.user {
@@ -90,14 +92,33 @@
       text-align: right;
     }
 
+    .message.user:after {
+      content: "";
+      position: absolute;
+      right: -6px;
+      top: 10px;
+      border: 6px solid transparent;
+      border-left-color: #4b0082;
+    }
+
     .message.gpt3 {
       background: #eee;
       color: #333;
       margin-right: auto;
     }
 
+    .message.gpt3:after {
+      content: "";
+      position: absolute;
+      left: -6px;
+      top: 10px;
+      border: 6px solid transparent;
+      border-right-color: #eee;
+    }
+
     #input-container {
       display: flex;
+      align-items: center;
       border-top: 1px solid #ddd;
       padding: 0.5rem;
       background: #fff;
@@ -111,17 +132,24 @@
       outline: none;
     }
 
-    #send-button {
+    #send-button, #voice-button {
       background: #4b0082;
       border: none;
       color: #fff;
-      padding: 0 1rem;
+      padding: 0.6rem 1rem;
       cursor: pointer;
       transition: background 0.3s ease;
       font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    #send-button:hover {
+    #voice-button {
+      margin-right: 0.5rem;
+    }
+
+    #voice-button:hover, #send-button:hover {
       background: #3a0066;
     }
 
@@ -185,18 +213,71 @@
       line-height: 1.4;
     }
 
-    .footer-copyright {
-      text-align: center;
-      margin-top: 1rem;
-      border-top: 1px solid rgba(255,255,255,0.2);
-      padding-top: 1rem;
-      font-size: 0.85rem;
-      color: #ddd;
+    .footer-section p:not(:last-child) {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-section .social-icons {
+      display: flex;
+      align-items: center;
+      margin-top: 0.5rem;
+    }
+
+    .footer-section .social-icons a {
+      display: inline-block;
+    }
+
+    .footer-section .social-icons a i {
+      margin-right: 0.3rem;
+    }
+
+    .footer-section .social-icons a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-section h4 {
+      margin-bottom: 1.2rem;
+    }
+
+    .footer-container > .footer-section:not(:last-child) {
+      margin-right: 2rem;
+    }
+
+    .footer-container {
+      gap: 2rem;
+    }
+
+    .footer-container > .footer-section h4 {
+      font-size: 1.1rem;
+    }
+
+    .footer-container > .footer-section p,
+    .footer-container > .footer-section a {
+      font-size: 0.95rem;
+    }
+
+    .footer-container > .footer-section a {
+      line-height: 1.6;
+    }
+
+    .footer-container > .footer-section ul {
+      padding: 0;
+    }
+
+    .footer-container > .footer-section ul li {
+      margin-bottom: 0.5rem;
     }
 
     @media (max-width: 768px) {
       .footer-container {
         flex-direction: column;
+        gap: 1rem;
+      }
+      #app {
+        width: 90%;
+      }
+      #app h1 {
+        font-size: 1.2rem;
       }
     }
   </style>
@@ -205,7 +286,7 @@
   <header>
     <nav class="navbar navbar-expand-lg">
       <a href="index.html" class="logo">SpellChat</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="border:none;">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border:none;">
         <span class="text-white">Menu</span>
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
@@ -224,8 +305,9 @@
       <h1>SpellChat</h1>
       <div id="chat"></div>
       <div id="input-container">
+        <button id="voice-button"><i class="fas fa-microphone"></i></button>
         <input type="text" id="user-input" placeholder="Digite sua mensagem...">
-        <button id="send-button">Enviar</button>
+        <button id="send-button"><i class="fas fa-paper-plane"></i></button>
       </div>
     </div>
   </main>
@@ -250,14 +332,14 @@
       <div class="footer-section">
         <h4>Mídias sociais</h4>
         <div class="social-icons">
-          <a href="https://www.facebook.com/conectapro" target="_blank">Facebook</a>
-          <a href="https://www.instagram.com/conectapro" target="_blank">Instagram</a>
-          <a href="https://www.linkedin.com/company/conectapro" target="_blank">LinkedIn</a>
+          <a href="https://www.facebook.com/conectapro" target="_blank"><i class="fab fa-facebook"></i>Facebook</a>
+          <a href="https://www.instagram.com/conectapro" target="_blank"><i class="fab fa-instagram"></i>Instagram</a>
+          <a href="https://www.linkedin.com/company/conectapro" target="_blank"><i class="fab fa-linkedin"></i>LinkedIn</a>
         </div>
       </div>
     </div>
-    <div class="footer-copyright">
-      <p>&copy; 2023 SpellChat. Todos os direitos reservados.</p>
+    <div class="text-center" style="border-top:1px solid rgba(255,255,255,0.2); padding-top:1rem; font-size:0.85rem; color:#ddd;">
+      &copy; 2023 SpellChat. Todos os direitos reservados.
     </div>
   </footer>
 
@@ -266,6 +348,41 @@
     const chat = document.getElementById('chat');
     const userInput = document.getElementById('user-input');
     const sendButton = document.getElementById('send-button');
+    const voiceButton = document.getElementById('voice-button');
+
+    let recognizing = false;
+    let recognition;
+
+    if ('webkitSpeechRecognition' in window) {
+      recognition = new webkitSpeechRecognition();
+      recognition.lang = 'pt-BR';
+      recognition.continuous = false;
+      recognition.interimResults = false;
+
+      recognition.onstart = () => {
+        recognizing = true;
+        voiceButton.style.background = '#3a0066';
+      };
+
+      recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        userInput.value = transcript;
+      };
+
+      recognition.onend = () => {
+        recognizing = false;
+        voiceButton.style.background = '#4b0082';
+      };
+    }
+
+    voiceButton.addEventListener('click', () => {
+      if (!recognition) return;
+      if (!recognizing) {
+        recognition.start();
+      } else {
+        recognition.stop();
+      }
+    });
 
     sendButton.addEventListener('click', async () => {
       const userMessage = userInput.value.trim();
@@ -288,8 +405,7 @@
     }
 
     async function fetchGPT3Response(prompt) {
-      // Substitua sua chave da API abaixo por uma variável de ambiente ou método seguro.
-      const apiKey = 'SUA_CHAVE_DA_API_AQUI'; 
+      const apiKey = 'SUA_CHAVE_DA_API_AQUI';
       const response = await fetch('https://api.openai.com/v1/engines/davinci-codex/completions', {
         method: 'POST',
         headers: {
@@ -308,7 +424,7 @@
         const jsonResponse = await response.json();
         return jsonResponse.choices[0].text.trim();
       } else {
-        return 'Ocorreu um erro ao buscar a resposta. Tente novamente mais tarde.';
+        return 'Não foi possível obter uma resposta no momento.';
       }
     }
 
